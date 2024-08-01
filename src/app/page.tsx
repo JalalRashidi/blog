@@ -30,25 +30,9 @@ export default async function Home() {
   return (
     <div>
       <MaxContainer>
-        <div className="text-center bg-zinc-700 text-white my-4 p-4">
+        <div className="text-center bg-zinc-700 text-white my-4 p-4 rounded-md">
         <h1 className="text-5xl">Blog Posts</h1>
         </div>
-       
-        {/* <div className="grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 gap-4">
-          {blogs.length > 0 ? (
-            blogs.map((blog) => (
-              <div key={blog.id}>
-                <h2>{blog.title}</h2>
-                <p>{blog.summary}</p>
-                <Link className="" href={`${blog.id}/?blog=${blog.slug}`}>
-                  read more
-                </Link>
-              </div>
-            ))
-          ) : (
-            <p>No blogs available</p>
-          )}
-        </div> */}
         <div className="grid  md:grid-cols-3 sm:grid-cols-2 gap-4">
           {blogs.length > 0 ? (
             blogs.map((blog) => (

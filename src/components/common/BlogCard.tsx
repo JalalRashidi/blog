@@ -11,10 +11,10 @@ import Link from 'next/link'
 
 // Define an interface for the props
 interface BlogCardProps {
-  bId: number;       // Assuming bId is a string, adjust the type if needed
-  slug: string;      // Assuming slug is a string, adjust the type if needed
-  title: string;     // Assuming title is a string, adjust the type if needed
-  summary: string;   // Assuming summary is a string, adjust the type if needed
+  bId: number;       
+  slug: string;      
+  title: string;    
+  summary: string;  
 }
 
 // Type the component with the props interface
@@ -29,7 +29,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ bId, slug, title, summary }) => {
                 <CardDescription>{summary}</CardDescription>  
             </CardContent>
             <CardFooter>
-                <Link href={`/1?blog=${slug}`}>Read more</Link>
+                <Link href={`/${bId}?blog=${slug}`} className="border px-4 py-2 rounded-full hover:bg-zinc-700 hover:text-white">Read more</Link>
             </CardFooter>
         </Card>
     </div>

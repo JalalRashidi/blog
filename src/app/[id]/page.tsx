@@ -1,12 +1,14 @@
-import { Metadata } from 'next';
-import axios from 'axios';
-import MaxContainer from '@/components/common/MaxContainer';
+import { Metadata } from "next";
+import axios from "axios";
+import MaxContainer from "@/components/common/MaxContainer";
+import Link from "next/link";
 
 // Define the type for the blog data
 type Blog = {
   title: string;
   content: string;
-  slug:String;
+  summary: String;
+  slug: String;
 };
 
 // Fetch blog data on the server side
@@ -16,7 +18,11 @@ async function fetchBlog(id: string): Promise<Blog> {
 }
 
 // Generate metadata for the blog page
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
   try {
     const blog = await fetchBlog(params.id);
     return {
@@ -25,8 +31,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     };
   } catch {
     return {
-      title: 'Blog Not Found',
-      description: 'This blog does not exist.',
+      title: "Blog Not Found",
+      description: "This blog does not exist.",
     };
   }
 }
@@ -39,9 +45,20 @@ const BlogPage = async ({ params }: { params: { id: string } }) => {
     return (
       <div>
         <MaxContainer>
-        <h1>{blog.title}</h1>
-        <p>{blog.content}</p>
-        {/* Render other blog details as needed */}
+          <div className="text-center bg-zinc-700 text-white my-4 p-4 rounded-md">
+            <h1 className="text-5xl py-4">{blog.title}</h1>
+          </div>
+          <article>
+            <h1 className="text-3xl">{blog.title}</h1>
+            <div className="mt-2">{blog.content}</div>
+            <div className="border bg-zinc-50 mt-4 p-2 sm:p-4">
+              <h2 className="text-xl font-bold">summary</h2>
+              <p>{blog.summary}</p>
+            </div>
+          </article>
+          <div className="flex justify-center my-8">
+          <Link href={'/'} className="border px-4 py-2 rounded-full hover:bg-zinc-700 hover:text-white">Find More blog</Link>
+          </div>
         </MaxContainer>
       </div>
     );
