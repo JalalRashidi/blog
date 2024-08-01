@@ -1,5 +1,6 @@
 //home page
 
+import BlogCard from "@/components/common/BlogCard";
 import MaxContainer from "@/components/common/MaxContainer";
 import axios from "axios";
 import Link from "next/link";
@@ -29,8 +30,11 @@ export default async function Home() {
   return (
     <div>
       <MaxContainer>
-        <h1>Blog Posts</h1>
-        <div className="grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 gap-4">
+        <div className="text-center bg-zinc-700 text-white my-4 p-4">
+        <h1 className="text-5xl">Blog Posts</h1>
+        </div>
+       
+        {/* <div className="grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 gap-4">
           {blogs.length > 0 ? (
             blogs.map((blog) => (
               <div key={blog.id}>
@@ -40,6 +44,21 @@ export default async function Home() {
                   read more
                 </Link>
               </div>
+            ))
+          ) : (
+            <p>No blogs available</p>
+          )}
+        </div> */}
+        <div className="grid  md:grid-cols-3 sm:grid-cols-2 gap-4">
+          {blogs.length > 0 ? (
+            blogs.map((blog) => (
+              <BlogCard
+                key={blog.id}
+                bId={blog.id}
+                title={blog.title}
+                slug={blog.slug}
+                summary={blog.summary}
+              />
             ))
           ) : (
             <p>No blogs available</p>
