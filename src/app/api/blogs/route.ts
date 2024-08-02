@@ -6,7 +6,18 @@ const prisma = new PrismaClient();
 // Handle GET requests
 export async function GET(request: NextRequest) {
   try {
-    const blogs = await prisma.blog.findMany();
+    // Get the URL and search parameters
+    const url = new URL(request.url);
+    const limitParam = url.searchParams.get('limit');
+
+    // Parse the limit parameter as a number
+    const limit = limitParam ? parseInt(limitParam, 10) : undefined;
+
+    // Use Prisma to find the limited number of blogs
+    const blogs = await prisma.blog.findMany({
+      take: limit, // Limit the number of results
+    });
+
     return NextResponse.json(blogs);
   } catch (error) {
     return NextResponse.json({ error: "Failed to fetch blogs" }, { status: 500 });
@@ -17,7 +28,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    console.log(body)
+    console.log(body);
     const newBlog = await prisma.blog.create({
       data: body,
     });
