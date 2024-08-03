@@ -9,12 +9,19 @@ export async function GET(request: NextRequest) {
     // Get the URL and search parameters
     const url = new URL(request.url);
     const limitParam = url.searchParams.get('limit');
+    let query = url.searchParams.get('query')
+    query=query?query.toLowerCase():""
 
     // Parse the limit parameter as a number
     const limit = limitParam ? parseInt(limitParam, 10) : undefined;
 
     // Use Prisma to find the limited number of blogs
     const blogs = await prisma.blog.findMany({
+      where: {
+        title: {
+          contains: query
+        },
+      },
       take: limit, // Limit the number of results
     });
 
