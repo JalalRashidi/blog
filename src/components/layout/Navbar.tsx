@@ -13,8 +13,8 @@ const Navbar: React.FC = () => {
         logo
         </Link>
         <div className="flex gap-4 items-center ">
-         <SearchBar/>
-          <Link href={"/create"} className="flex border px-2 py-1">create blog <span><Plus/></span></Link>
+         <SearchBar />
+          <Link href={"/create"} className="flex border rounded-full px-2 py-1 hover:shadow-md hover:shadow-orange-50">create blog <span><Plus/></span></Link>
         </div>
       </div>
     </MaxContainer>

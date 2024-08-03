@@ -24,16 +24,20 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// Handle POST requests (if needed)
+// Handle POST requests 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    console.log(body);
+    const {title,content, summary} = body;
+    const slug = title.toLowerCase().replace(/ /g, '_');
+    // console.log(slug)
+    
     const newBlog = await prisma.blog.create({
-      data: body,
+      data: {title,content,summary,slug}
     });
     return NextResponse.json(newBlog, { status: 201 });
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ error: "Failed to create blog" }, { status: 500 });
   }
 }

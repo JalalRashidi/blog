@@ -69,7 +69,7 @@ const SearchBar: React.FC = () => {
 
   return (
     <>
-      <Search onClick={() => setDisplay(true)} />
+      <Search onClick={() => setDisplay(true)} className='hover:scale-110'/>
       <div className={`fixed top-0 left-0 w-screen h h-[100vh] bg-black/70 text-black z-50 ${display ? '' : "hidden"}`}>
         <div className='w-full bg-white py-5'>
           <div className='w-[90%] md:w-4/5 mx-auto max-w-7xl flex justify-between items-center'>
@@ -82,7 +82,7 @@ const SearchBar: React.FC = () => {
                 onChange={handleSearch}
               />
             </div>
-            <X className='text-black' color='black' onClick={() => setDisplay(false)} />
+            <X className='text-black hover:scale-110' color='black' onClick={() => setDisplay(false)} />
           </div>
         </div>
         {query.length > 0 &&
