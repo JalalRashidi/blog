@@ -6,7 +6,7 @@ import { z } from "zod";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "@/components/ui/use-toast";
 import {
   Form,
   FormControl,
@@ -18,50 +18,53 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-
+// Define the schema using zod
 const formSchema = z.object({
   title: z.string().min(4, {
-    message: "title must be at least 4 characters.",
+    message: "Title must be at least 4 characters.",
   }),
   content: z.string().min(50, {
-    message: "content must be at least 50 characters.",
+    message: "Content must be at least 50 characters.",
   }),
   summary: z.string().min(20, {
-    message: "summary must be at least 20 characters.",
+    message: "Summary must be at least 20 characters.",
   }),
 });
 
 const AddBlogForm: React.FC = () => {
+  const { toast } = useToast();
 
-  const [message, setMessage] = useState('');
-  const { toast } = useToast()
-
+  // Initialize the form with useForm and zodResolver
   const form = useForm({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      title: "",
+      content: "",
+      summary: "",
+    },
   });
 
-  const onSubmit =async (data: any) => {
+  const { reset } = form;
+
+  const onSubmit = async (data: any) => {
     console.log(data);
     try {
-      const response = await axios.post('http://localhost:3000/api/blogs', data);
-      setMessage('Blog posted successfully!');
+      const response = await axios.post("http://localhost:3000/api/blogs", data);
       console.log(response.data);
       toast({
-        variant: "sucess",
+        variant: "success",
         description: "Blog posted successfully!",
-      })
-    } catch (error:any) {
-      setMessage('Error posting blog.');
+      });
+      reset(); // Reset form fields after successful submission
+    } catch (error: any) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: `There was a problem with your request.${error?.message}`,
-
-      })
-      console.error('Error:', error.response ? error.response.data : error.message);
+        description: `There was a problem with your request. ${error?.message}`,
+      });
+      console.log(error);
     }
   };
-  
 
   return (
     <Form {...form}>
@@ -74,7 +77,7 @@ const AddBlogForm: React.FC = () => {
               <FormLabel>Title *</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="enter the title of blog"
+                  placeholder="Enter the title of the blog"
                   type="text"
                   {...field}
                 />
@@ -91,7 +94,7 @@ const AddBlogForm: React.FC = () => {
             <FormItem>
               <FormLabel>Content *</FormLabel>
               <FormControl>
-                <Textarea placeholder="enter your blog content" {...field} />
+                <Textarea placeholder="Enter your blog content" {...field} />
               </FormControl>
               <FormDescription></FormDescription>
               <FormMessage />
@@ -105,7 +108,7 @@ const AddBlogForm: React.FC = () => {
             <FormItem>
               <FormLabel>Summary *</FormLabel>
               <FormControl>
-                <Textarea placeholder="enter your blog content" {...field} />
+                <Textarea placeholder="Enter a summary of your blog" {...field} />
               </FormControl>
               <FormDescription></FormDescription>
               <FormMessage />
