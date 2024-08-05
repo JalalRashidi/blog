@@ -9,6 +9,7 @@ to clone and run this project guide
 
 - `git clone https://github.com/JalalRashidi/blog.git`
 - `cd blog`
+-  `npm install`
 - `npm run dev`
 - `open your browser and enter http://localhost:3000/ `
 
@@ -68,6 +69,6 @@ this project is not create for production
 
 #### tech stack
 
-this project created Next js and sqlite.
+this project is created using Next js and sqlite.
 
 
