@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Project Title
 
-First, run the development server:
+Simple blog Application with for were user can read, create and search blogs.
+
+
+## Getting started
+to clone and run this project guide
+
+- `git clone https://github.com/JalalRashidi/blog.git`
+- `cd blog`
+- `npm run dev`
+- `open your browser and enter http://localhost:3000/ `
+
+## Deployment
+
+this project is not create for production
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  this project is in development phase
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API Reference
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### Get all blog
 
-## Learn More
+```http
+  http://localhost:3000/api/blog
+```
 
-To learn more about Next.js, take a look at the following resources:
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `limit` | `number` |  if you want to get limited number of blog put limit
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Get a single blog
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```http
+   http://localhost:3000/api/blog/${id}
+```
 
-## Deploy on Vercel
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `number` | **Required**. Id of blog you want fetch |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### post a  blog
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```http
+  methode : post http://localhost:3000/api/blog
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `title`      | `String` | **Required**. title of the blog you want to create |
+| `content`      | `String` | **Required**. content of the blog you want to create |
+| `summary`      | `String` | **Required**. summary of the blog you want to create |
+
+#### Delete a single blog
+
+```http
+  http://localhost:3000/api/blog
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id` | `number` |  put the blog id in body
+## FAQ
+
+#### tech stack
+
+this project created Next js and sqlite.
+
+
