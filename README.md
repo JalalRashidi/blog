@@ -26,7 +26,7 @@ this project is not create for production
 #### Get all blog
 
 ```http
-  http://localhost:3000/api/blog
+  methode : get http://localhost:3000/api/blog
 ```
 
 | Parameter | Type     | Description                |
@@ -36,7 +36,7 @@ this project is not create for production
 #### Get a single blog
 
 ```http
-   http://localhost:3000/api/blog/${id}
+  methode : get  http://localhost:3000/api/blog/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -58,7 +58,7 @@ this project is not create for production
 #### Delete a single blog
 
 ```http
-  http://localhost:3000/api/blog
+ methode : DELETE http://localhost:3000/api/blog
 ```
 
 | Parameter | Type     | Description                |
